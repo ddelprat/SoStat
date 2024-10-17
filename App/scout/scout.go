@@ -12,12 +12,12 @@ import (
 	"time"
 )
 
-var testTeams = []string{"afc-bournemouth-bournemouth-dorset", "arsenal-london", "aston-villa-birmingham", "brentford-brentford-middlesex", "brighton-hove-albion-brighton-east-sussex",
+var premierLeagueTeams = []string{"afc-bournemouth-bournemouth-dorset", "arsenal-london", "aston-villa-birmingham", "brentford-brentford-middlesex", "brighton-hove-albion-brighton-east-sussex",
 	"chelsea-london", "crystal-palace-london", "everton-liverpool", "fulham-london", "ipswich-town-ipswich-suffolk", "liverpool-liverpool", "leicester-city-leicester", "manchester-city-manchester",
 	"manchester-united-manchester", "newcastle-united-newcastle-upon-tyne", "nottingham-forest-nottingham", "southampton-southampton-hampshire", "tottenham-hotspur-london",
 	"west-ham-united-london", "wolverhampton-wanderers-wolverhampton"}
 
-//var testTeams = []string{"arsenal-london"}
+var testTeams = []string{"arsenal-london"}
 
 type cardRating struct {
 	card   *objects.Sale
