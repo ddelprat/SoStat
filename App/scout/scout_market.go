@@ -60,17 +60,16 @@ type listPlayerLiveSalesResponse struct {
 }
 
 // listLastPlayerSales lists the 50 last sales for a given player.
-func (s *Scout) listLastPlayerSales(player string, cursor string) (*listLastPlayerSalesResponse, error) {
+func (s *Scout) listLastPlayerSales(player string, date string, cursor string) (*listLastPlayerSalesResponse, error) {
 	if player == "" {
 		return nil, fmt.Errorf("team slug cannot be empty")
 	}
 
 	request := graphql.NewRequest(`
-	playerLastSales($player: String!, $cursor: String!) {
-		query {
+		query playerLastSales($player: String!, $date:ISO8601DateTime!, $cursor: String!){
 		  football{
 			player(slug:$player){
-			  tokenPrices(rarity:limited, after:$cursor){
+			  tokenPrices(rarity:limited, since:$date, after:$cursor){
 				nodes{
 				  id
 				  date
@@ -90,10 +89,10 @@ func (s *Scout) listLastPlayerSales(player string, cursor string) (*listLastPlay
 			  }
 			}
 		  }
-		}
-	}`)
+		}`)
 
 	request.Var("player", player)
+	request.Var("date", date)
 	request.Var("cursor", cursor)
 	request.Header.Set("APIKEY", s.apiKey)
 
